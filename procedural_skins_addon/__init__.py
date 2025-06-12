@@ -1,10 +1,10 @@
 bl_info = {
     "name": "Procedural Skins",
     "author": "Carson Kohlbrenner",
-    "version": (1, 17),
+    "version": (1, 18),
     "blender": (2, 80, 0),
     "location": "Object > Skin Import/Export",
-    "description": "Paint on tactile sensors over a surface and save them for Isaac Sim",
+    "description": "Export/Import tool for GenTact",
     "warning": "",
     "doc_url": "https://github.com/HIRO-group/GenTact",
     "category": "Object",
@@ -14,7 +14,7 @@ import bpy
 import bpy.props
 
 from .operators.isaac_save_operator import IsaacSaveOperator
-from .operators.alligator_save_operator import AlligatorSaveOperator
+from .operators.export_ert_operator import ExportERTOperator
 from .operators.skin_vertice_save_operator import SkinVerticeSaveOperator
 from .operators.import_heatmap_operator import ImportHeatmapOperator
 
@@ -85,9 +85,9 @@ class SensorPanel(bpy.types.Panel):
         row.label(text="Unit Scale")
         row.prop(unit_prop, "unit_scale")
 
-        # Alligator Save Button 
+        # Export Sensor Button 
         row = layout.row()
-        row.operator("object.alligator_save_operator")
+        row.operator("object.export_ert_operator")
 
 
         # Apply Skin Button
@@ -124,7 +124,7 @@ def register():
     bpy.utils.register_class(MyAddonProperties)
     bpy.types.Scene.my_addon_properties = bpy.props.PointerProperty(type=MyAddonProperties)
     bpy.utils.register_class(IsaacSaveOperator)
-    bpy.utils.register_class(AlligatorSaveOperator)
+    bpy.utils.register_class(ExportERTOperator)
     bpy.utils.register_class(SkinVerticeSaveOperator)
     bpy.utils.register_class(ImportHeatmapOperator)
     bpy.utils.register_class(SensorPanel)
@@ -132,7 +132,7 @@ def register():
 
 def unregister():
     bpy.utils.unregister_class(IsaacSaveOperator)
-    bpy.utils.unregister_class(AlligatorSaveOperator)
+    bpy.utils.unregister_class(ExportERTOperator)
     bpy.utils.unregister_class(SkinVerticeSaveOperator)
     bpy.utils.unregister_class(ImportHeatmapOperator)
     bpy.utils.unregister_class(MyAddonProperties)

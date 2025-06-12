@@ -1,0 +1,55 @@
+ESP32-C3 CAPACITIVE SENSOR WIRING DIAGRAM
+==========================================
+
+                    SparkFun Pro Micro ESP32-C3
+                    ┌─────────────────────────────┐
+                    │                             │
+               ┌────┤ GPIO4 (Send)               │
+               │    │                             │
+               │ ┌──┤ GPIO5 (Receive)            │
+               │ │  │                             │
+               │ │  ├ GPIO10 (LED) ──[220Ω]──┐   │
+               │ │  │                         │   │
+               │ │  ├ GND ────────────────────┼───┤
+               │ │  │                         │   │
+               │ │  └─────────────────────────────┘
+               │ │                            │
+               │ │    1MΩ Resistor            │
+               │ └────[1MΩ]────┐              │
+               │               │              │
+               └───────────────┘              │
+                                              │
+                                            ┌─┴─┐
+                                            │LED│ (Optional)
+                                            └─┬─┘
+                                              │
+                                              ⏚ GND
+
+        Capacitive Sensor Material
+        ┌─────────────────────────┐
+        │  (Aluminum Foil,        │
+        │   Copper Tape,          │ ←── Connect to GPIO5
+        │   or Bare Wire)         │
+        └─────────────────────────┘
+
+IMPORTANT CONNECTIONS:
+======================
+1. GPIO4 → One end of 1MΩ resistor
+2. GPIO5 → Other end of 1MΩ resistor + Capacitive sensor material
+3. GPIO10 → LED (through 220Ω resistor) → GND (optional)
+
+CRITICAL NOTES:
+===============
+• Use exactly 1MΩ (1 megohm) resistor - this is crucial!
+• Keep sensor material away from other conductors
+• Larger sensor area = more sensitivity
+• Test with different materials: foil works best
+
+SENSOR MATERIALS TO TRY:
+========================
+✓ Aluminum foil (best)
+✓ Copper tape
+✓ Bare copper wire
+✓ Conductive fabric
+✗ Regular wire (insulated) - won't work
+✗ Plastic - won't work 
