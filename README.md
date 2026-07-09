@@ -48,7 +48,7 @@ This repository is under a [Creative Commons Attribution-NonCommercial 4.0 Inter
 If you find our paper or codebase helpful, please consider citing:
 
 ```
-@inproceedings{kohlbrenner2025gentact,
+@inproceedings{kohlbrenner2026design,
   title={Design, Mapping, and Contact Anticipation with 3D-printed Whole-Body Tactile and Proximity Sensors},
   author={Kohlbrenner, Carson and Soukhovei, Anna and Escobedo, Caleb and Nechyporenko, Nataliya and Roncone, Alessandro},
   booktitle={2026 IEEE International Conference on Robotics and Automation (ICRA)},
