@@ -25,40 +25,25 @@ Procedural skins are a new class of artificial skins for robotic applications de
 
 # Installation
 
-## Intallation via ZIP (Recommended)
+## Intallation via ZIP (Recommended, all platforms)
 
-Download the [latest release here](https://github.com/HIRO-group/GenTact/releases). Once installed, import the extension in Blender via *Edit > Preferences > Get Extensions > Install from Disk...*
+Download the [latest release here](https://github.com/HIRO-group/GenTact/releases). Once downloaded, import the extension in Blender via *Edit > Preferences > Get Extensions > Install from Disk...*
 
-## Installation from source (For Development)
+## Installation from source (For Development, Linux and Mac)
 
 ```bash
-./install.sh #Linux and Mac
-# Windows not tested yet
+./install.sh
 ```
 This script will automatically find your Blender version, then generate a built copy of the extension under *build*.
 The zip file in *build* containing the extension can be installed in Blender via *Edit > Preferences > Get Extensions > Install from Disk...*
 
-### Building the extension
-This command will generate `primitives.blend` from the source code found under `src`. This blend file is compiled this way for safer version control of the most important layers. Before instlaling the extension, run the following command
-```bash
-cd GenTact_merge_update/src
-blender --background --python build.py
-```
 
-### Installing the Extension
-This repo is compatible with **Blender 5.1** and will not work with earlier releases. Use the follow commands to build the extension as a zip file that can be imported.
-
-```bash
-cd procedural_skins_addon
-blender --command extension build
-```
-Import the zip file via *Edit > Preferences > Get Extensions > Install from Disk...*
-
-### Alternative Installation
+### Alternative Installation 
 
 Each node is provided as an *Asset* and can be accessed through the *Asset Browser* in Blender. To add the nodes to the *Asset Browser*, include the path to the *procedural_skins_addon* through the following steps in Blender:
 1) Navigate to *Edit* > *Preferences*
-2) Add *procedural_skins_addon* ot the Asset Libraries file paths ![Preferences image](resources/preferences.png)
+2) Add *procedural_skins_addon* to the Asset Libraries file paths ![Preferences image](resources/preferences.png)
+*Note: This approach is no longer supported by our team and may result in some geometry nodes being unavailable*
 
 # Getting Started
 

@@ -10,3 +10,5 @@ procedural_skins_addon/*.blend1
 *.blend1
 procedural_skins_addon/assets/primitives.blend
 build/
+src/nodes/__pycache__/
+*.pyc
