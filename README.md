@@ -39,6 +39,13 @@ Detailed instructions on how to import your skin unit to Isaac Sim can be found 
 
 The procedural design is built on Blender's geometry node system. You can edit the designs by opening a geometry nodes window and navigating through the premade tabs.
 
+# Building the Extension
+```bash
+cd procedural_skins_addon
+blender --command extension build
+```
+Import the zip file via Edit > Preferences > Get Extensions > Install from Disk
+
 # Liscence
 
 This repository is under a [Creative Commons Attribution-NonCommercial 4.0 International License](https://creativecommons.org/licenses/by-nc/4.0/), which allows for unrestricted sharing and modifications with attribution, but prohibits commercial use.

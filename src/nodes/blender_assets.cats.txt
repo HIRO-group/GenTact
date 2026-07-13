@@ -1,0 +1,13 @@
+# This is an Asset Catalog Definition file for Blender.
+#
+# Empty lines and lines starting with `#` will be ignored.
+# The first non-ignored line should be the version indicator.
+# Other lines are of the format "UUID:catalog/path/for/assets:simple catalog name"
+
+VERSION 1
+
+a549bd42-06fc-4b44-9cf9-a04734500830:GenTact Toolbox:GenTact Toolbox
+fa644e63-9d82-4eb5-8214-e18651879ed7:GenTact Toolbox/Bundles:GenTact Toolbox-Bundles
+534896ff-f0b7-4c73-8e67-785f5d1d93fb:GenTact Toolbox/Interfaces:GenTact Toolbox-Interfaces
+62028881-e9b9-4231-8317-cdaa4d7b6d07:GenTact Toolbox/Primitives:GenTact Toolbox-Primitives
+8d5f0824-74f2-41a6-8dbb-9c6f0a99b1a9:GenTact Toolbox/Tools:GenTact Toolbox-Tools

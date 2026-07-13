@@ -1,0 +1,14 @@
+schema_version = "1.0.0"
+
+id = "gentact_toolbox"
+version = "2.0.0"
+name = "GenTact Toolbox"
+tagline = "Artificial Skin Generation"
+maintainer = "Carson Kohlbrenner <carson.kohlbrenner@colorado.edu>"
+type = "add-on"
+
+blender_version_min = "5.1.0"
+license = ["SPDX:GPL-3.0-or-later"]
+
+website = "https://github.com/HIRO-group/GenTact/tree/main"
+tags = ["Geometry Nodes"]

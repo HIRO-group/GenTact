@@ -7,3 +7,5 @@ procedural_skin_addon/modifiers/
 .env/
 *.zip
 procedural_skins_addon/*.blend1
+*.blend1
+procedural_skins_addon/assets/primitives.blend
