@@ -3,7 +3,7 @@ import os
 
 def register():
     prefs = bpy.context.preferences.filepaths
-    lib_path = os.path.join(os.path.dirname(__file__), "assets")
+    lib_path = os.path.dirname(__file__)
     if "GenTact Toolbox" not in prefs.asset_libraries:
         prefs.asset_libraries.new(name="GenTact Toolbox", directory=lib_path)
 

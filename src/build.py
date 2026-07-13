@@ -21,7 +21,10 @@ import bpy
 
 HERE = Path(__file__).resolve().parent
 NODES_DIR = HERE / "nodes"
-OUTPUT_BLEND = HERE.parent / "procedural_skins_addon" / "assets" / "primitives.blend"
+DEFAULT_OUTPUT = HERE.parent / "procedural_skins_addon" / "assets" / "primitives.blend"
+script_args = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
+OUTPUT_BLEND = Path(script_args[0]) / "primitives.blend" if script_args else DEFAULT_OUTPUT
+
 BUILDER_SUFFIX = "_node_group"
 SKIP_FILES = {"build.py"}
 
