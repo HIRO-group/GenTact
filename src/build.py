@@ -29,11 +29,11 @@ SKIP_FILES = {"build.py"}
 # tree name. catalog_id values are from
 # procedural_skins_addon/assets/blender_assets.cats.txt.
 ASSET_MARKS = {
-    "Dermis Layer": "2dbdbc8f-4717-4c38-aaa6-4cdaaffea416",  # GenTact Toolbox/Layer Primitives
-    "Sample Points": "2dbdbc8f-4717-4c38-aaa6-4cdaaffea416",  # GenTact Toolbox/Layer Primitives
-    "Custom Sensor Layer": "2dbdbc8f-4717-4c38-aaa6-4cdaaffea416",  # GenTact Toolbox/Layer Primitives
-    "Self-Cap Layer": "2dbdbc8f-4717-4c38-aaa6-4cdaaffea416",  # GenTact Toolbox/Layer Primitives
-    "Wiring Layer": "2dbdbc8f-4717-4c38-aaa6-4cdaaffea416",  # GenTact Toolbox/Layer Primitives
+    "Dermis Layer": "9a917b51-f4f2-495b-b7cd-b8550fc9ddb1",  # GenTact Toolbox/Layer Primitives
+    "Sample Points": "9a917b51-f4f2-495b-b7cd-b8550fc9ddb1",  # GenTact Toolbox/Layer Primitives
+    "Custom Sensor Layer": "9a917b51-f4f2-495b-b7cd-b8550fc9ddb1",  # GenTact Toolbox/Layer Primitives
+    "Self-Cap Layer": "9a917b51-f4f2-495b-b7cd-b8550fc9ddb1",  # GenTact Toolbox/Layer Primitives
+    "Wiring Layer": "9a917b51-f4f2-495b-b7cd-b8550fc9ddb1",  # GenTact Toolbox/Layer Primitives
 }
 
 # Asset Browser icons, keyed by tree name, loaded from resources/ since

@@ -8,7 +8,16 @@ This repo provides a set of premade geometry nodes that can be dragged and dropp
 - **Custom sensor mount layer** --- Distributed mounts for a given premade sensor mesh.
 - **Wire generation layer** --- Connects sensors to connection ports for a microcontroller.
 
-### Installation
+# Intallation
+
+### Build from source
+This command will generate `primitives.blend` from the source code found under `src`. This blend file is compiled this way for safer version control of the most important layers. Before instlaling the extension, run the following command
+```bash
+cd GenTact_merge_update/src/nodes
+blender --background --python build.py
+```
+
+### Installing the Extension
 This repo is compatible with **Blender 5.1** and will not work with earlier releases. Use the follow commands to build the extension as a zip file that can be imported.
 
 ```bash
