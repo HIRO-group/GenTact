@@ -23,13 +23,23 @@ Procedural skins are a new class of artificial skins for robotic applications de
   </a>
 </p>
 
-# Installation
+# Online Installation (Recommended, Blender 5.2+)
 
-## Intallation via ZIP (Recommended, all platforms)
+In blender, navigate to the asset library tab under *Edit > Preferences > Asset Libraries*. Next, click the plus icon, then add the remote GenTact asset library by entering this link: `https://ckohl10.github.io/GenTact-Public-Asset-Library/`
+
+![Asset Library](resources/asset_library.png)
+
+To verify that the library was successfully installed, open the asset browser in a new pane and you should see the GenTact Toolbox library.
+
+![Asset Library](resources/asset_browser.png)
+
+# Local Installation (For Development)
+
+## Intallation via ZIP
 
 Download the [latest release here](https://github.com/HIRO-group/GenTact/releases). Once downloaded, import the extension in Blender via *Edit > Preferences > Get Extensions > Install from Disk...*
 
-## Installation from source (For Development, Linux and Mac)
+## Installation from source (For Development)
 
 ```bash
 chmod +x build_from_source.sh
