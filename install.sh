@@ -17,7 +17,7 @@ if [ -z "${BLENDER:-}" ]; then
     done < <(
         {
             command -v blender 2>/dev/null || true
-            find "$HOME" /opt /usr/local /snap -maxdepth 5 -type f -name blender -perm -u+x 2>/dev/null || true
+            find "$HOME" /Applications /opt /usr/local /snap -maxdepth 5 -type f -iname blender -perm -u+x 2>/dev/null || true
         } | sort -u
     )
     BLENDER="$best_bin"
