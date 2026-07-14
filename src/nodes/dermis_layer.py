@@ -1913,6 +1913,12 @@ def plate_volume_direct_labels_1_node_group(node_tree_names: dict[typing.Callabl
     bottom_cut_socket.default_input = 'VALUE'
     bottom_cut_socket.structure_type = 'AUTO'
 
+    # Socket Edge Cut
+    edge_cut_socket = plate_volume_direct_labels_1.interface.new_socket(name="Edge Cut", in_out='OUTPUT', socket_type='NodeSocketGeometry')
+    edge_cut_socket.attribute_domain = 'POINT'
+    edge_cut_socket.default_input = 'VALUE'
+    edge_cut_socket.structure_type = 'AUTO'
+
     # Socket Bottom Plate
     bottom_plate_socket = plate_volume_direct_labels_1.interface.new_socket(name="Bottom Plate", in_out='INPUT', socket_type='NodeSocketGeometry')
     bottom_plate_socket.attribute_domain = 'POINT'
@@ -2100,6 +2106,26 @@ def plate_volume_direct_labels_1_node_group(node_tree_names: dict[typing.Callabl
     delete_geometry.domain = 'FACE'
     delete_geometry.mode = 'ALL'
 
+    # Node Delete Geometry.001
+    delete_geometry_001 = plate_volume_direct_labels_1.nodes.new("GeometryNodeDeleteGeometry")
+    delete_geometry_001.name = "Delete Geometry.001"
+    delete_geometry_001.hide = True
+    delete_geometry_001.show_options = True
+    delete_geometry_001.domain = 'FACE'
+    delete_geometry_001.mode = 'ALL'
+
+    # Node Reroute.003
+    reroute_003 = plate_volume_direct_labels_1.nodes.new("NodeReroute")
+    reroute_003.name = "Reroute.003"
+    reroute_003.show_options = True
+    reroute_003.socket_idname = "NodeSocketGeometry"
+    # Node Boolean Math
+    boolean_math = plate_volume_direct_labels_1.nodes.new("FunctionNodeBooleanMath")
+    boolean_math.name = "Boolean Math"
+    boolean_math.hide = True
+    boolean_math.show_options = True
+    boolean_math.operation = 'NOT'
+
     # Set parents
     plate_volume_direct_labels_1.nodes["Extrude Mesh.002"].parent = plate_volume_direct_labels_1.nodes["Plate\\"]
     plate_volume_direct_labels_1.nodes["Delete Geometry.002"].parent = plate_volume_direct_labels_1.nodes["Plate\\"]
@@ -2112,22 +2138,25 @@ def plate_volume_direct_labels_1_node_group(node_tree_names: dict[typing.Callabl
     plate_volume_direct_labels_1.nodes["Reroute.002"].parent = plate_volume_direct_labels_1.nodes["Plate\\"]
 
     # Set locations
-    plate_volume_direct_labels_1.nodes["Plate"].location = (1984.5040283203125, 572.3007202148438)
-    plate_volume_direct_labels_1.nodes["Group Input"].location = (-1282.3311767578125, 56.3474235534668)
-    plate_volume_direct_labels_1.nodes["Extrude Mesh.002"].location = (1239.461181640625, -68.407470703125)
-    plate_volume_direct_labels_1.nodes["Delete Geometry.002"].location = (1498.507568359375, -35.936279296875)
-    plate_volume_direct_labels_1.nodes["Reroute.024"].location = (690.7341918945312, -237.513916015625)
-    plate_volume_direct_labels_1.nodes["Plate\\"].location = (-940.8365478515625, 288.19354248046875)
-    plate_volume_direct_labels_1.nodes["Math.007"].location = (1253.6396484375, -348.5452575683594)
-    plate_volume_direct_labels_1.nodes["Math.006"].location = (1485.6474609375, -337.0059814453125)
-    plate_volume_direct_labels_1.nodes["Switch"].location = (1669.92919921875, -405.8991394042969)
-    plate_volume_direct_labels_1.nodes["Reroute"].location = (33.87091064453125, -826.3385009765625)
-    plate_volume_direct_labels_1.nodes["Reroute.001"].location = (1582.336669921875, -822.5804443359375)
-    plate_volume_direct_labels_1.nodes["Reroute.002"].location = (1653.38916015625, -253.46322631835938)
-    plate_volume_direct_labels_1.nodes["Cutout Thickness Labeled"].location = (980.0, 600.0)
-    plate_volume_direct_labels_1.nodes["Group Input.001"].location = (-80.0, 580.0)
-    plate_volume_direct_labels_1.nodes["Viewer"].location = (1918.9268798828125, 186.93601989746094)
-    plate_volume_direct_labels_1.nodes["Delete Geometry"].location = (1546.15185546875, 536.1340942382812)
+    plate_volume_direct_labels_1.nodes["Plate"].location = (2552.2763671875, 622.49609375)
+    plate_volume_direct_labels_1.nodes["Group Input"].location = (-1133.86767578125, 101.85791015625)
+    plate_volume_direct_labels_1.nodes["Extrude Mesh.002"].location = (1239.461181640625, -68.57440185546875)
+    plate_volume_direct_labels_1.nodes["Delete Geometry.002"].location = (1498.507568359375, -36.10321044921875)
+    plate_volume_direct_labels_1.nodes["Reroute.024"].location = (690.7341918945312, -237.68084716796875)
+    plate_volume_direct_labels_1.nodes["Plate\\"].location = (-792.3731079101562, 333.8709716796875)
+    plate_volume_direct_labels_1.nodes["Math.007"].location = (1253.6396484375, -348.7121887207031)
+    plate_volume_direct_labels_1.nodes["Math.006"].location = (1485.6474609375, -337.17291259765625)
+    plate_volume_direct_labels_1.nodes["Switch"].location = (1669.92919921875, -406.0660705566406)
+    plate_volume_direct_labels_1.nodes["Reroute"].location = (33.8709716796875, -826.5054931640625)
+    plate_volume_direct_labels_1.nodes["Reroute.001"].location = (1582.336669921875, -822.7474365234375)
+    plate_volume_direct_labels_1.nodes["Reroute.002"].location = (1653.38916015625, -253.63015747070312)
+    plate_volume_direct_labels_1.nodes["Cutout Thickness Labeled"].location = (1128.46337890625, 645.510498046875)
+    plate_volume_direct_labels_1.nodes["Group Input.001"].location = (68.46343231201172, 625.5104370117188)
+    plate_volume_direct_labels_1.nodes["Viewer"].location = (2067.39013671875, 232.44651794433594)
+    plate_volume_direct_labels_1.nodes["Delete Geometry"].location = (1694.615234375, 581.6445922851562)
+    plate_volume_direct_labels_1.nodes["Delete Geometry.001"].location = (1692.6090087890625, 524.087158203125)
+    plate_volume_direct_labels_1.nodes["Reroute.003"].location = (1580.880859375, 581.328857421875)
+    plate_volume_direct_labels_1.nodes["Boolean Math"].location = (1493.2740478515625, 518.7462768554688)
 
     # Set dimensions
     plate_volume_direct_labels_1.nodes["Plate"].width  = 140.0
@@ -2145,8 +2174,8 @@ def plate_volume_direct_labels_1_node_group(node_tree_names: dict[typing.Callabl
     plate_volume_direct_labels_1.nodes["Reroute.024"].width  = 12.5
     plate_volume_direct_labels_1.nodes["Reroute.024"].height = 100.0
 
-    plate_volume_direct_labels_1.nodes["Plate\\"].width  = 1839.1591796875
-    plate_volume_direct_labels_1.nodes["Plate\\"].height = 860.20947265625
+    plate_volume_direct_labels_1.nodes["Plate\\"].width  = 1839.3408203125
+    plate_volume_direct_labels_1.nodes["Plate\\"].height = 860.3764038085938
 
     plate_volume_direct_labels_1.nodes["Math.007"].width  = 140.0
     plate_volume_direct_labels_1.nodes["Math.007"].height = 100.0
@@ -2177,6 +2206,15 @@ def plate_volume_direct_labels_1_node_group(node_tree_names: dict[typing.Callabl
 
     plate_volume_direct_labels_1.nodes["Delete Geometry"].width  = 140.0
     plate_volume_direct_labels_1.nodes["Delete Geometry"].height = 100.0
+
+    plate_volume_direct_labels_1.nodes["Delete Geometry.001"].width  = 140.0
+    plate_volume_direct_labels_1.nodes["Delete Geometry.001"].height = 100.0
+
+    plate_volume_direct_labels_1.nodes["Reroute.003"].width  = 12.5
+    plate_volume_direct_labels_1.nodes["Reroute.003"].height = 100.0
+
+    plate_volume_direct_labels_1.nodes["Boolean Math"].width  = 140.0
+    plate_volume_direct_labels_1.nodes["Boolean Math"].height = 100.0
 
 
     # Initialize plate_volume_direct_labels_1 links
@@ -2271,20 +2309,15 @@ def plate_volume_direct_labels_1_node_group(node_tree_names: dict[typing.Callabl
         plate_volume_direct_labels_1.nodes["Group Input"].outputs[1],
         plate_volume_direct_labels_1.nodes["Switch"].inputs[1]
     )
-    # delete_geometry.Geometry -> viewer.Geometry
+    # delete_geometry_001.Geometry -> viewer.Geometry
     plate_volume_direct_labels_1.links.new(
-        plate_volume_direct_labels_1.nodes["Delete Geometry"].outputs[0],
+        plate_volume_direct_labels_1.nodes["Delete Geometry.001"].outputs[0],
         plate_volume_direct_labels_1.nodes["Viewer"].inputs[0]
     )
     # cutout_thickness_labeled.Bottom Cut -> plate.Bottom Cut
     plate_volume_direct_labels_1.links.new(
         plate_volume_direct_labels_1.nodes["Cutout Thickness Labeled"].outputs[3],
         plate_volume_direct_labels_1.nodes["Plate"].inputs[2]
-    )
-    # cutout_thickness_labeled.Top Cut -> delete_geometry.Geometry
-    plate_volume_direct_labels_1.links.new(
-        plate_volume_direct_labels_1.nodes["Cutout Thickness Labeled"].outputs[1],
-        plate_volume_direct_labels_1.nodes["Delete Geometry"].inputs[0]
     )
     # cutout_thickness_labeled.Side -> delete_geometry.Selection
     plate_volume_direct_labels_1.links.new(
@@ -2315,6 +2348,36 @@ def plate_volume_direct_labels_1_node_group(node_tree_names: dict[typing.Callabl
     plate_volume_direct_labels_1.links.new(
         plate_volume_direct_labels_1.nodes["Group Input.001"].outputs[5],
         plate_volume_direct_labels_1.nodes["Cutout Thickness Labeled"].inputs[5]
+    )
+    # reroute_003.Output -> delete_geometry.Geometry
+    plate_volume_direct_labels_1.links.new(
+        plate_volume_direct_labels_1.nodes["Reroute.003"].outputs[0],
+        plate_volume_direct_labels_1.nodes["Delete Geometry"].inputs[0]
+    )
+    # cutout_thickness_labeled.Top Cut -> reroute_003.Input
+    plate_volume_direct_labels_1.links.new(
+        plate_volume_direct_labels_1.nodes["Cutout Thickness Labeled"].outputs[1],
+        plate_volume_direct_labels_1.nodes["Reroute.003"].inputs[0]
+    )
+    # reroute_003.Output -> delete_geometry_001.Geometry
+    plate_volume_direct_labels_1.links.new(
+        plate_volume_direct_labels_1.nodes["Reroute.003"].outputs[0],
+        plate_volume_direct_labels_1.nodes["Delete Geometry.001"].inputs[0]
+    )
+    # cutout_thickness_labeled.Side -> boolean_math.Boolean
+    plate_volume_direct_labels_1.links.new(
+        plate_volume_direct_labels_1.nodes["Cutout Thickness Labeled"].outputs[4],
+        plate_volume_direct_labels_1.nodes["Boolean Math"].inputs[0]
+    )
+    # boolean_math.Boolean -> delete_geometry_001.Selection
+    plate_volume_direct_labels_1.links.new(
+        plate_volume_direct_labels_1.nodes["Boolean Math"].outputs[0],
+        plate_volume_direct_labels_1.nodes["Delete Geometry.001"].inputs[1]
+    )
+    # delete_geometry_001.Geometry -> plate.Edge Cut
+    plate_volume_direct_labels_1.links.new(
+        plate_volume_direct_labels_1.nodes["Delete Geometry.001"].outputs[0],
+        plate_volume_direct_labels_1.nodes["Plate"].inputs[3]
     )
     viewer.viewer_items[0].auto_remove = True
 
@@ -2357,6 +2420,12 @@ def dermis_layer__generic__1_node_group(node_tree_names: dict[typing.Callable, s
     bottom_cut_socket.default_input = 'VALUE'
     bottom_cut_socket.structure_type = 'AUTO'
 
+    # Socket Edge Cut
+    edge_cut_socket = dermis_layer__generic__1.interface.new_socket(name="Edge Cut", in_out='OUTPUT', socket_type='NodeSocketGeometry')
+    edge_cut_socket.attribute_domain = 'POINT'
+    edge_cut_socket.default_input = 'VALUE'
+    edge_cut_socket.structure_type = 'AUTO'
+
     # Socket Geometry
     geometry_socket_1 = dermis_layer__generic__1.interface.new_socket(name="Geometry", in_out='INPUT', socket_type='NodeSocketGeometry')
     geometry_socket_1.attribute_domain = 'POINT'
@@ -2391,10 +2460,10 @@ def dermis_layer__generic__1_node_group(node_tree_names: dict[typing.Callable, s
 
     # Socket Thickness
     thickness_socket = dermis_layer__generic__1.interface.new_socket(name="Thickness", in_out='INPUT', socket_type='NodeSocketFloat')
-    thickness_socket.default_value = 0.10000000149011612
+    thickness_socket.default_value = 0.015000000596046448
     thickness_socket.min_value = 0.0
     thickness_socket.max_value = 3.4028234663852886e+38
-    thickness_socket.subtype = 'NONE'
+    thickness_socket.subtype = 'DISTANCE'
     thickness_socket.attribute_domain = 'POINT'
     thickness_socket.default_input = 'VALUE'
     thickness_socket.structure_type = 'AUTO'
@@ -2585,12 +2654,12 @@ def dermis_layer__generic__1_node_group(node_tree_names: dict[typing.Callable, s
     reroute = dermis_layer__generic__1.nodes.new("NodeReroute")
     reroute.name = "Reroute"
     reroute.show_options = True
-    reroute.socket_idname = "NodeSocketFloat"
+    reroute.socket_idname = "NodeSocketFloatDistance"
     # Node Reroute.001
     reroute_001 = dermis_layer__generic__1.nodes.new("NodeReroute")
     reroute_001.name = "Reroute.001"
     reroute_001.show_options = True
-    reroute_001.socket_idname = "NodeSocketFloat"
+    reroute_001.socket_idname = "NodeSocketFloatDistance"
     # Node Store Named Attribute.001
     store_named_attribute_001 = dermis_layer__generic__1.nodes.new("GeometryNodeStoreNamedAttribute")
     store_named_attribute_001.name = "Store Named Attribute.001"
@@ -2614,7 +2683,7 @@ def dermis_layer__generic__1_node_group(node_tree_names: dict[typing.Callable, s
     reroute_002 = dermis_layer__generic__1.nodes.new("NodeReroute")
     reroute_002.name = "Reroute.002"
     reroute_002.show_options = True
-    reroute_002.socket_idname = "NodeSocketFloat"
+    reroute_002.socket_idname = "NodeSocketFloatDistance"
     # Node Reroute.003
     reroute_003 = dermis_layer__generic__1.nodes.new("NodeReroute")
     reroute_003.name = "Reroute.003"
@@ -2640,7 +2709,7 @@ def dermis_layer__generic__1_node_group(node_tree_names: dict[typing.Callable, s
     plate_volume_no_ref.name = "Plate Volume No Ref"
     plate_volume_no_ref.show_options = True
     plate_volume_no_ref.node_tree = bpy.data.node_groups[node_tree_names[plate_volume_direct_labels_1_node_group]]
-    # Socket_3
+    # Socket_5
     plate_volume_no_ref.inputs[2].default_value = False
 
     # Node Reroute.005
@@ -2677,6 +2746,16 @@ def dermis_layer__generic__1_node_group(node_tree_names: dict[typing.Callable, s
     reroute_008.name = "Reroute.008"
     reroute_008.show_options = True
     reroute_008.socket_idname = "NodeSocketMenu"
+    # Node Viewer
+    viewer = dermis_layer__generic__1.nodes.new("GeometryNodeViewer")
+    viewer.name = "Viewer"
+    viewer.show_options = True
+    viewer.active_index = 0
+    viewer.domain = 'AUTO'
+    viewer.ui_shortcut = 0
+    viewer.viewer_items.clear()
+    viewer.viewer_items.new('GEOMETRY', "Edge Cut")
+
     # Set locations
     dermis_layer__generic__1.nodes["Group Input"].location = (-1533.9521484375, -151.42105102539062)
     dermis_layer__generic__1.nodes["Group Output"].location = (1378.5146484375, 87.09790802001953)
@@ -2701,6 +2780,7 @@ def dermis_layer__generic__1_node_group(node_tree_names: dict[typing.Callable, s
     dermis_layer__generic__1.nodes["Switch.003"].location = (-661.1881713867188, -889.1668701171875)
     dermis_layer__generic__1.nodes["Switch.005"].location = (-666.583984375, -1079.517333984375)
     dermis_layer__generic__1.nodes["Reroute.008"].location = (-977.1029052734375, -471.4217834472656)
+    dermis_layer__generic__1.nodes["Viewer"].location = (67.84981536865234, -91.22581481933594)
 
     # Set dimensions
     dermis_layer__generic__1.nodes["Group Input"].width  = 140.0
@@ -2771,6 +2851,9 @@ def dermis_layer__generic__1_node_group(node_tree_names: dict[typing.Callable, s
 
     dermis_layer__generic__1.nodes["Reroute.008"].width  = 12.5
     dermis_layer__generic__1.nodes["Reroute.008"].height = 100.0
+
+    dermis_layer__generic__1.nodes["Viewer"].width  = 140.0
+    dermis_layer__generic__1.nodes["Viewer"].height = 100.0
 
 
     # Initialize dermis_layer__generic__1 links
@@ -3010,12 +3093,23 @@ def dermis_layer__generic__1_node_group(node_tree_names: dict[typing.Callable, s
         dermis_layer__generic__1.nodes["Group Input"].outputs[17],
         dermis_layer__generic__1.nodes["Switch.005"].inputs[2]
     )
+    # plate_volume_no_ref.Edge Cut -> viewer.Edge Cut
+    dermis_layer__generic__1.links.new(
+        dermis_layer__generic__1.nodes["Plate Volume No Ref"].outputs[3],
+        dermis_layer__generic__1.nodes["Viewer"].inputs[0]
+    )
+    # plate_volume_no_ref.Edge Cut -> group_output.Edge Cut
+    dermis_layer__generic__1.links.new(
+        dermis_layer__generic__1.nodes["Plate Volume No Ref"].outputs[3],
+        dermis_layer__generic__1.nodes["Group Output"].inputs[4]
+    )
     # reroute_004.Output -> join_geometry.Geometry
     dermis_layer__generic__1.links.new(
         dermis_layer__generic__1.nodes["Reroute.004"].outputs[0],
         dermis_layer__generic__1.nodes["Join Geometry"].inputs[0]
     )
     options_socket.default_value = 'Default'
+    viewer.viewer_items[0].auto_remove = True
 
     return dermis_layer__generic__1
 
@@ -3037,6 +3131,18 @@ def dermis_layer_1_node_group(node_tree_names: dict[typing.Callable, str]):
     geometry_socket.attribute_domain = 'POINT'
     geometry_socket.default_input = 'VALUE'
     geometry_socket.structure_type = 'AUTO'
+
+    # Socket Top Cut
+    top_cut_socket = dermis_layer_1.interface.new_socket(name="Top Cut", in_out='OUTPUT', socket_type='NodeSocketGeometry')
+    top_cut_socket.attribute_domain = 'POINT'
+    top_cut_socket.default_input = 'VALUE'
+    top_cut_socket.structure_type = 'AUTO'
+
+    # Socket Bottom Cut
+    bottom_cut_socket = dermis_layer_1.interface.new_socket(name="Bottom Cut", in_out='OUTPUT', socket_type='NodeSocketGeometry')
+    bottom_cut_socket.attribute_domain = 'POINT'
+    bottom_cut_socket.default_input = 'VALUE'
+    bottom_cut_socket.structure_type = 'AUTO'
 
     # Socket Geometry
     geometry_socket_1 = dermis_layer_1.interface.new_socket(name="Geometry", in_out='INPUT', socket_type='NodeSocketGeometry')
@@ -3108,48 +3214,31 @@ def dermis_layer_1_node_group(node_tree_names: dict[typing.Callable, str]):
     smooth_sampling_socket.default_input = 'VALUE'
     smooth_sampling_socket.structure_type = 'AUTO'
 
-    # Panel Subtraction Hole
-    subtraction_hole_panel = dermis_layer_1.interface.new_panel("Subtraction Hole")
-    # Socket Subtraction Hole
-    subtraction_hole_socket = dermis_layer_1.interface.new_socket(name="Subtraction Hole", in_out='INPUT', socket_type='NodeSocketBool', parent = subtraction_hole_panel)
-    subtraction_hole_socket.default_value = False
-    subtraction_hole_socket.attribute_domain = 'POINT'
-    subtraction_hole_socket.default_input = 'VALUE'
-    subtraction_hole_socket.is_panel_toggle = True
-    subtraction_hole_socket.structure_type = 'AUTO'
+    # Panel Trim
+    trim_panel = dermis_layer_1.interface.new_panel("Trim")
+    # Socket Trim Thickness
+    trim_thickness_socket = dermis_layer_1.interface.new_socket(name="Trim Thickness", in_out='INPUT', socket_type='NodeSocketFloat', parent = trim_panel)
+    trim_thickness_socket.default_value = 50.0
+    trim_thickness_socket.min_value = 0.0
+    trim_thickness_socket.max_value = 100.0
+    trim_thickness_socket.subtype = 'PERCENTAGE'
+    trim_thickness_socket.attribute_domain = 'POINT'
+    trim_thickness_socket.default_input = 'VALUE'
+    trim_thickness_socket.structure_type = 'AUTO'
 
-    # Socket Subtraction Paint Name
-    subtraction_paint_name_socket = dermis_layer_1.interface.new_socket(name="Subtraction Paint Name", in_out='INPUT', socket_type='NodeSocketString', parent = subtraction_hole_panel)
-    subtraction_paint_name_socket.default_value = "Dermis Hole"
-    subtraction_paint_name_socket.subtype = 'NONE'
-    subtraction_paint_name_socket.attribute_domain = 'POINT'
-    subtraction_paint_name_socket.default_input = 'VALUE'
-    subtraction_paint_name_socket.structure_type = 'AUTO'
-    subtraction_paint_name_socket.optional_label = True
-
-    # Socket Subtraction Cutout Tolerance
-    subtraction_cutout_tolerance_socket = dermis_layer_1.interface.new_socket(name="Subtraction Cutout Tolerance", in_out='INPUT', socket_type='NodeSocketFloat', parent = subtraction_hole_panel)
-    subtraction_cutout_tolerance_socket.default_value = 50.0
-    subtraction_cutout_tolerance_socket.min_value = 0.0
-    subtraction_cutout_tolerance_socket.max_value = 100.0
-    subtraction_cutout_tolerance_socket.subtype = 'PERCENTAGE'
-    subtraction_cutout_tolerance_socket.attribute_domain = 'POINT'
-    subtraction_cutout_tolerance_socket.default_input = 'VALUE'
-    subtraction_cutout_tolerance_socket.structure_type = 'AUTO'
-
-    # Socket Subtraction Thickness
-    subtraction_thickness_socket = dermis_layer_1.interface.new_socket(name="Subtraction Thickness", in_out='INPUT', socket_type='NodeSocketFloat', parent = subtraction_hole_panel)
-    subtraction_thickness_socket.default_value = 50.0
-    subtraction_thickness_socket.min_value = 0.0
-    subtraction_thickness_socket.max_value = 100.0
-    subtraction_thickness_socket.subtype = 'PERCENTAGE'
-    subtraction_thickness_socket.attribute_domain = 'POINT'
-    subtraction_thickness_socket.default_input = 'VALUE'
-    subtraction_thickness_socket.structure_type = 'AUTO'
+    # Socket Trim Width
+    trim_width_socket = dermis_layer_1.interface.new_socket(name="Trim Width", in_out='INPUT', socket_type='NodeSocketFloat', parent = trim_panel)
+    trim_width_socket.default_value = 0.003000000026077032
+    trim_width_socket.min_value = -3.4028234663852886e+38
+    trim_width_socket.max_value = 3.4028234663852886e+38
+    trim_width_socket.subtype = 'DISTANCE'
+    trim_width_socket.attribute_domain = 'POINT'
+    trim_width_socket.default_input = 'VALUE'
+    trim_width_socket.structure_type = 'AUTO'
 
     # Socket Vertex Merge Distance
-    vertex_merge_distance_socket = dermis_layer_1.interface.new_socket(name="Vertex Merge Distance", in_out='INPUT', socket_type='NodeSocketFloat', parent = subtraction_hole_panel)
-    vertex_merge_distance_socket.default_value = 0.009999999776482582
+    vertex_merge_distance_socket = dermis_layer_1.interface.new_socket(name="Vertex Merge Distance", in_out='INPUT', socket_type='NodeSocketFloat', parent = trim_panel)
+    vertex_merge_distance_socket.default_value = 0.0010000000474974513
     vertex_merge_distance_socket.min_value = 0.0
     vertex_merge_distance_socket.max_value = 3.4028234663852886e+38
     vertex_merge_distance_socket.subtype = 'DISTANCE'
@@ -3177,23 +3266,25 @@ def dermis_layer_1_node_group(node_tree_names: dict[typing.Callable, str]):
     dermis_layer__generic_.name = "Dermis Layer (Generic)"
     dermis_layer__generic_.show_options = True
     dermis_layer__generic_.node_tree = bpy.data.node_groups[node_tree_names[dermis_layer__generic__1_node_group]]
-    # Socket_3
+    # Socket_5
     dermis_layer__generic_.inputs[1].default_value = False
-    # Socket_17
-    dermis_layer__generic_.inputs[8].default_value = False
-    # Socket_18
-    dermis_layer__generic_.inputs[9].default_value = "Dermis Hole"
     # Socket_13
-    dermis_layer__generic_.inputs[12].default_value = 'Advanced'
+    dermis_layer__generic_.inputs[8].default_value = False
     # Socket_14
-    dermis_layer__generic_.inputs[13].default_value = True
+    dermis_layer__generic_.inputs[9].default_value = "Dermis Hole"
     # Socket_15
+    dermis_layer__generic_.inputs[10].default_value = 0.0
+    # Socket_19
+    dermis_layer__generic_.inputs[12].default_value = 'Default'
+    # Socket_20
+    dermis_layer__generic_.inputs[13].default_value = True
+    # Socket_21
     dermis_layer__generic_.inputs[14].default_value = "dermis"
-    # Socket_23
+    # Socket_22
     dermis_layer__generic_.inputs[15].default_value = "dermis_top"
-    # Socket_24
+    # Socket_23
     dermis_layer__generic_.inputs[16].default_value = "dermis_side"
-    # Socket_25
+    # Socket_24
     dermis_layer__generic_.inputs[17].default_value = ""
 
     # Node Dermis Layer (Generic).001
@@ -3201,36 +3292,32 @@ def dermis_layer_1_node_group(node_tree_names: dict[typing.Callable, str]):
     dermis_layer__generic__001.name = "Dermis Layer (Generic).001"
     dermis_layer__generic__001.show_options = True
     dermis_layer__generic__001.node_tree = bpy.data.node_groups[node_tree_names[dermis_layer__generic__1_node_group]]
-    # Socket_3
+    # Socket_5
     dermis_layer__generic__001.inputs[1].default_value = False
     # Socket_13
-    dermis_layer__generic__001.inputs[12].default_value = 'Advanced'
+    dermis_layer__generic__001.inputs[8].default_value = False
     # Socket_14
-    dermis_layer__generic__001.inputs[13].default_value = True
+    dermis_layer__generic__001.inputs[9].default_value = "Dermis Hole"
     # Socket_15
-    dermis_layer__generic__001.inputs[14].default_value = "dermis"
-    # Socket_23
+    dermis_layer__generic__001.inputs[10].default_value = 0.0
+    # Socket_19
+    dermis_layer__generic__001.inputs[12].default_value = 'Advanced'
+    # Socket_20
+    dermis_layer__generic__001.inputs[13].default_value = True
+    # Socket_21
+    dermis_layer__generic__001.inputs[14].default_value = ""
+    # Socket_22
     dermis_layer__generic__001.inputs[15].default_value = ""
+    # Socket_23
+    dermis_layer__generic__001.inputs[16].default_value = ""
     # Socket_24
-    dermis_layer__generic__001.inputs[16].default_value = "dermis_side"
-    # Socket_25
-    dermis_layer__generic__001.inputs[17].default_value = "dermis_bottom"
+    dermis_layer__generic__001.inputs[17].default_value = ""
 
     # Node Join Geometry
     join_geometry = dermis_layer_1.nodes.new("GeometryNodeJoinGeometry")
     join_geometry.name = "Join Geometry"
     join_geometry.show_options = True
 
-    # Node Reroute
-    reroute = dermis_layer_1.nodes.new("NodeReroute")
-    reroute.name = "Reroute"
-    reroute.show_options = True
-    reroute.socket_idname = "NodeSocketBool"
-    # Node Reroute.001
-    reroute_001 = dermis_layer_1.nodes.new("NodeReroute")
-    reroute_001.name = "Reroute.001"
-    reroute_001.show_options = True
-    reroute_001.socket_idname = "NodeSocketFloatPercentage"
     # Node Reroute.002
     reroute_002 = dermis_layer_1.nodes.new("NodeReroute")
     reroute_002.name = "Reroute.002"
@@ -3241,11 +3328,6 @@ def dermis_layer_1_node_group(node_tree_names: dict[typing.Callable, str]):
     reroute_003.name = "Reroute.003"
     reroute_003.show_options = True
     reroute_003.socket_idname = "NodeSocketString"
-    # Node Reroute.004
-    reroute_004 = dermis_layer_1.nodes.new("NodeReroute")
-    reroute_004.name = "Reroute.004"
-    reroute_004.show_options = True
-    reroute_004.socket_idname = "NodeSocketString"
     # Node Reroute.005
     reroute_005 = dermis_layer_1.nodes.new("NodeReroute")
     reroute_005.name = "Reroute.005"
@@ -3397,6 +3479,83 @@ def dermis_layer_1_node_group(node_tree_names: dict[typing.Callable, str]):
     reroute_010.name = "Reroute.010"
     reroute_010.show_options = True
     reroute_010.socket_idname = "NodeSocketGeometry"
+    # Node Extrude Mesh
+    extrude_mesh = dermis_layer_1.nodes.new("GeometryNodeExtrudeMesh")
+    extrude_mesh.name = "Extrude Mesh"
+    extrude_mesh.show_options = True
+    extrude_mesh.mode = 'FACES'
+    # Selection
+    extrude_mesh.inputs[1].default_value = True
+    # Offset
+    extrude_mesh.inputs[2].default_value = (0.0, 0.0, 0.0)
+    # Individual
+    extrude_mesh.inputs[4].default_value = False
+
+    # Node Math.006
+    math_006 = dermis_layer_1.nodes.new("ShaderNodeMath")
+    math_006.name = "Math.006"
+    math_006.show_options = True
+    math_006.operation = 'MULTIPLY'
+    math_006.use_clamp = False
+    # Value_001
+    math_006.inputs[1].default_value = -1.0
+
+    # Node Viewer
+    viewer = dermis_layer_1.nodes.new("GeometryNodeViewer")
+    viewer.name = "Viewer"
+    viewer.show_options = True
+    viewer.active_index = 0
+    viewer.domain = 'AUTO'
+    viewer.ui_shortcut = 0
+    viewer.viewer_items.clear()
+    viewer.viewer_items.new('GEOMETRY', "Bottom Cut")
+
+    # Node Join Geometry.002
+    join_geometry_002 = dermis_layer_1.nodes.new("GeometryNodeJoinGeometry")
+    join_geometry_002.name = "Join Geometry.002"
+    join_geometry_002.show_options = True
+
+    # Node Merge by Distance.001
+    merge_by_distance_001 = dermis_layer_1.nodes.new("GeometryNodeMergeByDistance")
+    merge_by_distance_001.name = "Merge by Distance.001"
+    merge_by_distance_001.show_options = True
+    # Selection
+    merge_by_distance_001.inputs[1].default_value = True
+    # Mode
+    merge_by_distance_001.inputs[2].default_value = 'All'
+
+    # Node Reroute
+    reroute = dermis_layer_1.nodes.new("NodeReroute")
+    reroute.name = "Reroute"
+    reroute.show_options = True
+    reroute.socket_idname = "NodeSocketFloatDistance"
+    # Node Flip Faces
+    flip_faces = dermis_layer_1.nodes.new("GeometryNodeFlipFaces")
+    flip_faces.name = "Flip Faces"
+    flip_faces.show_options = True
+    # Selection
+    flip_faces.inputs[1].default_value = True
+
+    # Node Reroute.001
+    reroute_001 = dermis_layer_1.nodes.new("NodeReroute")
+    reroute_001.name = "Reroute.001"
+    reroute_001.show_options = True
+    reroute_001.socket_idname = "NodeSocketGeometry"
+    # Node Reroute.004
+    reroute_004 = dermis_layer_1.nodes.new("NodeReroute")
+    reroute_004.name = "Reroute.004"
+    reroute_004.show_options = True
+    reroute_004.socket_idname = "NodeSocketGeometry"
+    # Node Reroute.011
+    reroute_011 = dermis_layer_1.nodes.new("NodeReroute")
+    reroute_011.name = "Reroute.011"
+    reroute_011.show_options = True
+    reroute_011.socket_idname = "NodeSocketGeometry"
+    # Node Reroute.012
+    reroute_012 = dermis_layer_1.nodes.new("NodeReroute")
+    reroute_012.name = "Reroute.012"
+    reroute_012.show_options = True
+    reroute_012.socket_idname = "NodeSocketGeometry"
     # Set parents
     dermis_layer_1.nodes["Dermis Layer (Generic)"].parent = dermis_layer_1.nodes["Frame.003"]
     dermis_layer_1.nodes["Dermis Layer (Generic).001"].parent = dermis_layer_1.nodes["Frame.004"]
@@ -3414,37 +3573,45 @@ def dermis_layer_1_node_group(node_tree_names: dict[typing.Callable, str]):
 
     # Set locations
     dermis_layer_1.nodes["Group Input"].location = (-2060.0, -80.0)
-    dermis_layer_1.nodes["Group Output"].location = (919.8709716796875, 20.0)
+    dermis_layer_1.nodes["Group Output"].location = (1674.3245849609375, -56.94798278808594)
     dermis_layer_1.nodes["Dermis Layer (Generic)"].location = (29.2784423828125, -55.82391357421875)
-    dermis_layer_1.nodes["Dermis Layer (Generic).001"].location = (28.66278076171875, -55.94818115234375)
-    dermis_layer_1.nodes["Join Geometry"].location = (340.0, 20.0)
-    dermis_layer_1.nodes["Reroute"].location = (-800.0, -240.0)
-    dermis_layer_1.nodes["Reroute.001"].location = (-800.0, -180.0)
+    dermis_layer_1.nodes["Dermis Layer (Generic).001"].location = (28.662841796875, -55.94818115234375)
+    dermis_layer_1.nodes["Join Geometry"].location = (927.9013061523438, 17.844846725463867)
     dermis_layer_1.nodes["Reroute.002"].location = (-800.0, -120.0)
     dermis_layer_1.nodes["Reroute.003"].location = (-800.0, -40.0)
-    dermis_layer_1.nodes["Reroute.004"].location = (-800.0, -260.0)
     dermis_layer_1.nodes["Reroute.005"].location = (-800.0, -80.0)
     dermis_layer_1.nodes["Reroute.006"].location = (-800.0, -140.0)
     dermis_layer_1.nodes["Reroute.007"].location = (-800.0, -160.0)
     dermis_layer_1.nodes["Reroute.008"].location = (509.6861572265625, -794.220947265625)
-    dermis_layer_1.nodes["Merge by Distance"].location = (560.0, 20.0)
+    dermis_layer_1.nodes["Merge by Distance"].location = (1147.9013671875, 17.844846725463867)
     dermis_layer_1.nodes["Math"].location = (268.9033203125, -1193.0322265625)
     dermis_layer_1.nodes["Math.001"].location = (28.9033203125, -1313.0322265625)
     dermis_layer_1.nodes["Math.002"].location = (428.9033203125, -993.0323486328125)
     dermis_layer_1.nodes["Frame"].location = (-1568.9033203125, 673.0322875976562)
-    dermis_layer_1.nodes["Switch"].location = (249.16128540039062, -176.19354248046875)
-    dermis_layer_1.nodes["Math.003"].location = (29.161285400390625, -36.19354248046875)
-    dermis_layer_1.nodes["Frame.001"].location = (-289.1612854003906, 576.1935424804688)
-    dermis_layer_1.nodes["Switch.001"].location = (248.92214965820312, -175.58087158203125)
-    dermis_layer_1.nodes["Math.004"].location = (28.922149658203125, -35.58087158203125)
-    dermis_layer_1.nodes["Frame.002"].location = (-258.9677429199219, -328.8387145996094)
+    dermis_layer_1.nodes["Switch"].location = (248.675537109375, -176.02615356445312)
+    dermis_layer_1.nodes["Math.003"].location = (28.675537109375, -36.026123046875)
+    dermis_layer_1.nodes["Frame.001"].location = (299.225830078125, 573.8709716796875)
+    dermis_layer_1.nodes["Switch.001"].location = (249.20538330078125, -175.75076293945312)
+    dermis_layer_1.nodes["Math.004"].location = (29.20538330078125, -35.750732421875)
+    dermis_layer_1.nodes["Frame.002"].location = (455.6129150390625, -195.67742919921875)
     dermis_layer_1.nodes["Reroute.009"].location = (-398.8696594238281, 417.87493896484375)
-    dermis_layer_1.nodes["Switch.002"].location = (-143.39479064941406, 116.47321319580078)
+    dermis_layer_1.nodes["Switch.002"].location = (444.5065612792969, 114.31806182861328)
     dermis_layer_1.nodes["Frame.003"].location = (912.0000610351562, -35.80645751953125)
     dermis_layer_1.nodes["Frame.004"].location = (905.0323486328125, -971.0322875976562)
     dermis_layer_1.nodes["Math.005"].location = (628.8374633789062, -763.593505859375)
-    dermis_layer_1.nodes["Join Geometry.001"].location = (739.7418823242188, 16.088836669921875)
-    dermis_layer_1.nodes["Reroute.010"].location = (704.7544555664062, 70.8399887084961)
+    dermis_layer_1.nodes["Join Geometry.001"].location = (1327.6431884765625, 13.933684349060059)
+    dermis_layer_1.nodes["Reroute.010"].location = (1292.6558837890625, 68.6848373413086)
+    dermis_layer_1.nodes["Extrude Mesh"].location = (-248.92843627929688, -737.5169067382812)
+    dermis_layer_1.nodes["Math.006"].location = (-1515.7508544921875, -838.3359375)
+    dermis_layer_1.nodes["Viewer"].location = (-346.35589599609375, 591.4585571289062)
+    dermis_layer_1.nodes["Join Geometry.002"].location = (110.61659240722656, -689.69580078125)
+    dermis_layer_1.nodes["Merge by Distance.001"].location = (428.6103515625, -751.0640869140625)
+    dermis_layer_1.nodes["Reroute"].location = (-38.2620964050293, -168.6211700439453)
+    dermis_layer_1.nodes["Flip Faces"].location = (-69.29032897949219, -749.4878540039062)
+    dermis_layer_1.nodes["Reroute.001"].location = (1336.02685546875, 592.1664428710938)
+    dermis_layer_1.nodes["Reroute.004"].location = (1335.568359375, 613.1073608398438)
+    dermis_layer_1.nodes["Reroute.011"].location = (-26.625473022460938, 611.2592163085938)
+    dermis_layer_1.nodes["Reroute.012"].location = (-26.625473022460938, 632.2752685546875)
 
     # Set dimensions
     dermis_layer_1.nodes["Group Input"].width  = 140.0
@@ -3462,20 +3629,11 @@ def dermis_layer_1_node_group(node_tree_names: dict[typing.Callable, str]):
     dermis_layer_1.nodes["Join Geometry"].width  = 140.0
     dermis_layer_1.nodes["Join Geometry"].height = 100.0
 
-    dermis_layer_1.nodes["Reroute"].width  = 12.5
-    dermis_layer_1.nodes["Reroute"].height = 100.0
-
-    dermis_layer_1.nodes["Reroute.001"].width  = 12.5
-    dermis_layer_1.nodes["Reroute.001"].height = 100.0
-
     dermis_layer_1.nodes["Reroute.002"].width  = 12.5
     dermis_layer_1.nodes["Reroute.002"].height = 100.0
 
     dermis_layer_1.nodes["Reroute.003"].width  = 12.5
     dermis_layer_1.nodes["Reroute.003"].height = 100.0
-
-    dermis_layer_1.nodes["Reroute.004"].width  = 12.5
-    dermis_layer_1.nodes["Reroute.004"].height = 100.0
 
     dermis_layer_1.nodes["Reroute.005"].width  = 12.5
     dermis_layer_1.nodes["Reroute.005"].height = 100.0
@@ -3502,7 +3660,7 @@ def dermis_layer_1_node_group(node_tree_names: dict[typing.Callable, str]):
     dermis_layer_1.nodes["Math.002"].height = 100.0
 
     dermis_layer_1.nodes["Frame"].width  = 1210.64453125
-    dermis_layer_1.nodes["Frame"].height = 1622.9677734375
+    dermis_layer_1.nodes["Frame"].height = 1643.87109375
 
     dermis_layer_1.nodes["Switch"].width  = 140.0
     dermis_layer_1.nodes["Switch"].height = 100.0
@@ -3519,8 +3677,8 @@ def dermis_layer_1_node_group(node_tree_names: dict[typing.Callable, str]):
     dermis_layer_1.nodes["Math.004"].width  = 140.0
     dermis_layer_1.nodes["Math.004"].height = 100.0
 
-    dermis_layer_1.nodes["Frame.002"].width  = 417.93548583984375
-    dermis_layer_1.nodes["Frame.002"].height = 342.7742004394531
+    dermis_layer_1.nodes["Frame.002"].width  = 417.935546875
+    dermis_layer_1.nodes["Frame.002"].height = 342.774169921875
 
     dermis_layer_1.nodes["Reroute.009"].width  = 12.5
     dermis_layer_1.nodes["Reroute.009"].height = 100.0
@@ -3529,10 +3687,10 @@ def dermis_layer_1_node_group(node_tree_names: dict[typing.Callable, str]):
     dermis_layer_1.nodes["Switch.002"].height = 100.0
 
     dermis_layer_1.nodes["Frame.003"].width  = 257.308837890625
-    dermis_layer_1.nodes["Frame.003"].height = 639.9354858398438
+    dermis_layer_1.nodes["Frame.003"].height = 574.9032592773438
 
     dermis_layer_1.nodes["Frame.004"].width  = 276.57989501953125
-    dermis_layer_1.nodes["Frame.004"].height = 622.9032592773438
+    dermis_layer_1.nodes["Frame.004"].height = 643.8064575195312
 
     dermis_layer_1.nodes["Math.005"].width  = 140.0
     dermis_layer_1.nodes["Math.005"].height = 100.0
@@ -3542,6 +3700,39 @@ def dermis_layer_1_node_group(node_tree_names: dict[typing.Callable, str]):
 
     dermis_layer_1.nodes["Reroute.010"].width  = 12.5
     dermis_layer_1.nodes["Reroute.010"].height = 100.0
+
+    dermis_layer_1.nodes["Extrude Mesh"].width  = 140.0
+    dermis_layer_1.nodes["Extrude Mesh"].height = 100.0
+
+    dermis_layer_1.nodes["Math.006"].width  = 140.0
+    dermis_layer_1.nodes["Math.006"].height = 100.0
+
+    dermis_layer_1.nodes["Viewer"].width  = 140.0
+    dermis_layer_1.nodes["Viewer"].height = 100.0
+
+    dermis_layer_1.nodes["Join Geometry.002"].width  = 140.0
+    dermis_layer_1.nodes["Join Geometry.002"].height = 100.0
+
+    dermis_layer_1.nodes["Merge by Distance.001"].width  = 140.0
+    dermis_layer_1.nodes["Merge by Distance.001"].height = 100.0
+
+    dermis_layer_1.nodes["Reroute"].width  = 12.5
+    dermis_layer_1.nodes["Reroute"].height = 100.0
+
+    dermis_layer_1.nodes["Flip Faces"].width  = 140.0
+    dermis_layer_1.nodes["Flip Faces"].height = 100.0
+
+    dermis_layer_1.nodes["Reroute.001"].width  = 12.5
+    dermis_layer_1.nodes["Reroute.001"].height = 100.0
+
+    dermis_layer_1.nodes["Reroute.004"].width  = 12.5
+    dermis_layer_1.nodes["Reroute.004"].height = 100.0
+
+    dermis_layer_1.nodes["Reroute.011"].width  = 12.5
+    dermis_layer_1.nodes["Reroute.011"].height = 100.0
+
+    dermis_layer_1.nodes["Reroute.012"].width  = 12.5
+    dermis_layer_1.nodes["Reroute.012"].height = 100.0
 
 
     # Initialize dermis_layer_1 links
@@ -3581,21 +3772,6 @@ def dermis_layer_1_node_group(node_tree_names: dict[typing.Callable, str]):
         dermis_layer_1.nodes["Reroute.007"].outputs[0],
         dermis_layer_1.nodes["Dermis Layer (Generic)"].inputs[7]
     )
-    # reroute_001.Output -> dermis_layer__generic_.Subtraction Cutout Tolerance
-    dermis_layer_1.links.new(
-        dermis_layer_1.nodes["Reroute.001"].outputs[0],
-        dermis_layer_1.nodes["Dermis Layer (Generic)"].inputs[10]
-    )
-    # group_input.Subtraction Hole -> reroute.Input
-    dermis_layer_1.links.new(
-        dermis_layer_1.nodes["Group Input"].outputs[8],
-        dermis_layer_1.nodes["Reroute"].inputs[0]
-    )
-    # group_input.Subtraction Cutout Tolerance -> reroute_001.Input
-    dermis_layer_1.links.new(
-        dermis_layer_1.nodes["Group Input"].outputs[10],
-        dermis_layer_1.nodes["Reroute.001"].inputs[0]
-    )
     # group_input.Plate Offset -> reroute_002.Input
     dermis_layer_1.links.new(
         dermis_layer_1.nodes["Group Input"].outputs[5],
@@ -3605,11 +3781,6 @@ def dermis_layer_1_node_group(node_tree_names: dict[typing.Callable, str]):
     dermis_layer_1.links.new(
         dermis_layer_1.nodes["Group Input"].outputs[2],
         dermis_layer_1.nodes["Reroute.003"].inputs[0]
-    )
-    # group_input.Subtraction Paint Name -> reroute_004.Input
-    dermis_layer_1.links.new(
-        dermis_layer_1.nodes["Group Input"].outputs[9],
-        dermis_layer_1.nodes["Reroute.004"].inputs[0]
     )
     # group_input.Cutout Tolerance -> reroute_005.Input
     dermis_layer_1.links.new(
@@ -3646,21 +3817,6 @@ def dermis_layer_1_node_group(node_tree_names: dict[typing.Callable, str]):
         dermis_layer_1.nodes["Reroute.007"].outputs[0],
         dermis_layer_1.nodes["Dermis Layer (Generic).001"].inputs[7]
     )
-    # reroute_001.Output -> dermis_layer__generic__001.Subtraction Cutout Tolerance
-    dermis_layer_1.links.new(
-        dermis_layer_1.nodes["Reroute.001"].outputs[0],
-        dermis_layer_1.nodes["Dermis Layer (Generic).001"].inputs[10]
-    )
-    # reroute.Output -> dermis_layer__generic__001.Subtraction Paint
-    dermis_layer_1.links.new(
-        dermis_layer_1.nodes["Reroute"].outputs[0],
-        dermis_layer_1.nodes["Dermis Layer (Generic).001"].inputs[8]
-    )
-    # reroute_004.Output -> dermis_layer__generic__001.Subtraction Paint Name
-    dermis_layer_1.links.new(
-        dermis_layer_1.nodes["Reroute.004"].outputs[0],
-        dermis_layer_1.nodes["Dermis Layer (Generic).001"].inputs[9]
-    )
     # join_geometry.Geometry -> merge_by_distance.Geometry
     dermis_layer_1.links.new(
         dermis_layer_1.nodes["Join Geometry"].outputs[0],
@@ -3681,9 +3837,9 @@ def dermis_layer_1_node_group(node_tree_names: dict[typing.Callable, str]):
         dermis_layer_1.nodes["Math"].outputs[0],
         dermis_layer_1.nodes["Dermis Layer (Generic).001"].inputs[4]
     )
-    # group_input.Subtraction Thickness -> math_001.Value
+    # group_input.Trim Thickness -> math_001.Value
     dermis_layer_1.links.new(
-        dermis_layer_1.nodes["Group Input"].outputs[11],
+        dermis_layer_1.nodes["Group Input"].outputs[8],
         dermis_layer_1.nodes["Math.001"].inputs[0]
     )
     # group_input.Thickness -> math_002.Value
@@ -3726,14 +3882,9 @@ def dermis_layer_1_node_group(node_tree_names: dict[typing.Callable, str]):
         dermis_layer_1.nodes["Math.004"].outputs[0],
         dermis_layer_1.nodes["Switch.001"].inputs[0]
     )
-    # dermis_layer__generic__001.Dermis -> switch_001.True
+    # group_input.Trim Thickness -> reroute_009.Input
     dermis_layer_1.links.new(
-        dermis_layer_1.nodes["Dermis Layer (Generic).001"].outputs[1],
-        dermis_layer_1.nodes["Switch.001"].inputs[2]
-    )
-    # group_input.Subtraction Thickness -> reroute_009.Input
-    dermis_layer_1.links.new(
-        dermis_layer_1.nodes["Group Input"].outputs[11],
+        dermis_layer_1.nodes["Group Input"].outputs[8],
         dermis_layer_1.nodes["Reroute.009"].inputs[0]
     )
     # reroute_009.Output -> math_004.Value
@@ -3741,9 +3892,9 @@ def dermis_layer_1_node_group(node_tree_names: dict[typing.Callable, str]):
         dermis_layer_1.nodes["Reroute.009"].outputs[0],
         dermis_layer_1.nodes["Math.004"].inputs[0]
     )
-    # group_input.Vertex Merge Distance -> merge_by_distance.Distance
+    # reroute.Output -> merge_by_distance.Distance
     dermis_layer_1.links.new(
-        dermis_layer_1.nodes["Group Input"].outputs[12],
+        dermis_layer_1.nodes["Reroute"].outputs[0],
         dermis_layer_1.nodes["Merge by Distance"].inputs[3]
     )
     # group_input.Include Original Geometry -> switch_002.Switch
@@ -3791,6 +3942,86 @@ def dermis_layer_1_node_group(node_tree_names: dict[typing.Callable, str]):
         dermis_layer_1.nodes["Switch.002"].outputs[0],
         dermis_layer_1.nodes["Reroute.010"].inputs[0]
     )
+    # dermis_layer__generic__001.Edge Cut -> extrude_mesh.Mesh
+    dermis_layer_1.links.new(
+        dermis_layer_1.nodes["Dermis Layer (Generic).001"].outputs[4],
+        dermis_layer_1.nodes["Extrude Mesh"].inputs[0]
+    )
+    # group_input.Trim Width -> math_006.Value
+    dermis_layer_1.links.new(
+        dermis_layer_1.nodes["Group Input"].outputs[9],
+        dermis_layer_1.nodes["Math.006"].inputs[0]
+    )
+    # math_006.Value -> extrude_mesh.Offset Scale
+    dermis_layer_1.links.new(
+        dermis_layer_1.nodes["Math.006"].outputs[0],
+        dermis_layer_1.nodes["Extrude Mesh"].inputs[3]
+    )
+    # dermis_layer__generic_.Bottom Cut -> viewer.Bottom Cut
+    dermis_layer_1.links.new(
+        dermis_layer_1.nodes["Dermis Layer (Generic)"].outputs[3],
+        dermis_layer_1.nodes["Viewer"].inputs[0]
+    )
+    # flip_faces.Mesh -> join_geometry_002.Geometry
+    dermis_layer_1.links.new(
+        dermis_layer_1.nodes["Flip Faces"].outputs[0],
+        dermis_layer_1.nodes["Join Geometry.002"].inputs[0]
+    )
+    # join_geometry_002.Geometry -> merge_by_distance_001.Geometry
+    dermis_layer_1.links.new(
+        dermis_layer_1.nodes["Join Geometry.002"].outputs[0],
+        dermis_layer_1.nodes["Merge by Distance.001"].inputs[0]
+    )
+    # group_input.Vertex Merge Distance -> reroute.Input
+    dermis_layer_1.links.new(
+        dermis_layer_1.nodes["Group Input"].outputs[10],
+        dermis_layer_1.nodes["Reroute"].inputs[0]
+    )
+    # reroute.Output -> merge_by_distance_001.Distance
+    dermis_layer_1.links.new(
+        dermis_layer_1.nodes["Reroute"].outputs[0],
+        dermis_layer_1.nodes["Merge by Distance.001"].inputs[3]
+    )
+    # extrude_mesh.Mesh -> flip_faces.Mesh
+    dermis_layer_1.links.new(
+        dermis_layer_1.nodes["Extrude Mesh"].outputs[0],
+        dermis_layer_1.nodes["Flip Faces"].inputs[0]
+    )
+    # merge_by_distance_001.Geometry -> switch_001.True
+    dermis_layer_1.links.new(
+        dermis_layer_1.nodes["Merge by Distance.001"].outputs[0],
+        dermis_layer_1.nodes["Switch.001"].inputs[2]
+    )
+    # reroute_001.Output -> group_output.Bottom Cut
+    dermis_layer_1.links.new(
+        dermis_layer_1.nodes["Reroute.001"].outputs[0],
+        dermis_layer_1.nodes["Group Output"].inputs[2]
+    )
+    # reroute_004.Output -> group_output.Top Cut
+    dermis_layer_1.links.new(
+        dermis_layer_1.nodes["Reroute.004"].outputs[0],
+        dermis_layer_1.nodes["Group Output"].inputs[1]
+    )
+    # reroute_011.Output -> reroute_001.Input
+    dermis_layer_1.links.new(
+        dermis_layer_1.nodes["Reroute.011"].outputs[0],
+        dermis_layer_1.nodes["Reroute.001"].inputs[0]
+    )
+    # reroute_012.Output -> reroute_004.Input
+    dermis_layer_1.links.new(
+        dermis_layer_1.nodes["Reroute.012"].outputs[0],
+        dermis_layer_1.nodes["Reroute.004"].inputs[0]
+    )
+    # dermis_layer__generic_.Bottom Cut -> reroute_011.Input
+    dermis_layer_1.links.new(
+        dermis_layer_1.nodes["Dermis Layer (Generic)"].outputs[3],
+        dermis_layer_1.nodes["Reroute.011"].inputs[0]
+    )
+    # dermis_layer__generic_.Top Cut -> reroute_012.Input
+    dermis_layer_1.links.new(
+        dermis_layer_1.nodes["Dermis Layer (Generic)"].outputs[2],
+        dermis_layer_1.nodes["Reroute.012"].inputs[0]
+    )
     # switch.Output -> join_geometry.Geometry
     dermis_layer_1.links.new(
         dermis_layer_1.nodes["Switch"].outputs[0],
@@ -3801,6 +4032,12 @@ def dermis_layer_1_node_group(node_tree_names: dict[typing.Callable, str]):
         dermis_layer_1.nodes["Reroute.010"].outputs[0],
         dermis_layer_1.nodes["Join Geometry.001"].inputs[0]
     )
+    # dermis_layer__generic__001.Edge Cut -> join_geometry_002.Geometry
+    dermis_layer_1.links.new(
+        dermis_layer_1.nodes["Dermis Layer (Generic).001"].outputs[4],
+        dermis_layer_1.nodes["Join Geometry.002"].inputs[0]
+    )
+    viewer.viewer_items[0].auto_remove = True
 
     return dermis_layer_1
 
