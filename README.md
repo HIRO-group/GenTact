@@ -32,7 +32,8 @@ Download the [latest release here](https://github.com/HIRO-group/GenTact/release
 ## Installation from source (For Development, Linux and Mac)
 
 ```bash
-./install.sh
+chmod +x build_from_source.sh
+./build_from_source.sh # or ./build.sh if you have errors from Blender version conflicts
 ```
 This script will automatically find your Blender version, then generate a built copy of the extension under *build*.
 The zip file in *build* containing the extension can be installed in Blender via *Edit > Preferences > Get Extensions > Install from Disk...*
